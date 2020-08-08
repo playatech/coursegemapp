@@ -1,3 +1,4 @@
+.container
 -# frozen_string_literal: true
 = simple_form_for(@course) do |f|
   = f.error_notification
@@ -5,7 +6,7 @@
 
   .form-inputs
     = f.input :title
-    = f.input :description
+    = f.input :description, as: :rich_text_area
 
   .form-actions
     = f.button :submit
