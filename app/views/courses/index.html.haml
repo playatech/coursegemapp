@@ -1,7 +1,5 @@
 %h3
-  Courses:
   .text-center
-  = @courses.count
     Courses
     .badge.badge-info
       = @courses.count
@@ -9,7 +7,7 @@
 
 .row
   .col-md-2
-    // = search_form_for @q do |f|
+    /= search_form_for @q do |f|
     = search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f|
       = f.label :title
       = f.search_field :title_cont, placeholder: 'Title', class: 'form-control form-control-sm'
@@ -35,11 +33,3 @@
       - @courses.each do |course|
         = render 'courses/course', course: course
 %br
-
-
-// Before ransack
-// .card-columns
-//   - @courses.each do |course|
-//     = render 'courses/course', course: course
-// %br
-
