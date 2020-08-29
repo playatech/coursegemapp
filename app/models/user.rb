@@ -6,8 +6,6 @@ class User < ApplicationRecord
   
   rolify
   
-  # before_create :ensure_login_uniqueness
-  
   def to_s
     email
   end
@@ -29,6 +27,15 @@ class User < ApplicationRecord
     else
       self.add_role(:student) if self.roles.blank?
       self.add_role(:teacher) #if you want any user to be able to create own courses
+    end
+  end
+
+  validate :must_have_a_role, on: :update
+
+  private
+  def must_have_a_role
+    unless roles.any?
+      errors.add(:roles, "Any User must have at least one role!")
     end
   end
 
